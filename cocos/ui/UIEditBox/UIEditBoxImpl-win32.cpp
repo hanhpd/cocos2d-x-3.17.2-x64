@@ -63,7 +63,7 @@ namespace ui {
 
 #ifdef _WIN64
         s_prevCocosWndProc = (WNDPROC)SetWindowLongPtrW(s_hwndCocos, GWLP_WNDPROC, (LONG_PTR)hookGLFWWindowProc);
-#elif
+#else
         s_prevCocosWndProc = (WNDPROC)SetWindowLongPtrW(s_hwndCocos, GWL_WNDPROC, (LONG_PTR)hookGLFWWindowProc);
 #endif
         
@@ -105,7 +105,7 @@ namespace ui {
         {
 #ifdef _WIN64
             SetWindowLongPtrW(_hwndEdit, GWLP_WNDPROC, (LONG_PTR)_prevWndProc);
-#elif
+#else
             SetWindowLongPtrW(_hwndEdit, GWL_WNDPROC, (LONG_PTR)_prevWndProc);
 #endif
             ::DestroyWindow(_hwndEdit);
@@ -137,7 +137,7 @@ namespace ui {
 #ifdef _WIN64
             SetWindowLongPtrW(_hwndEdit, GWLP_USERDATA, (LONG_PTR)this);
             _prevWndProc = (WNDPROC)SetWindowLongPtrW(_hwndEdit, GWLP_WNDPROC, (LONG_PTR)WindowProc);
-#elif
+#else
             SetWindowLongPtrW(_hwndEdit, GWL_USERDATA, (LONG_PTR)this);
             _prevWndProc = (WNDPROC)SetWindowLongPtrW(_hwndEdit, GWL_WNDPROC, (LONG_PTR)WindowProc);
 #endif
