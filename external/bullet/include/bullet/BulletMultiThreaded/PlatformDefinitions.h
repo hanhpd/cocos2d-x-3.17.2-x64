@@ -43,7 +43,7 @@ typedef union
 #elif defined(_M_ARM)
         typedef unsigned __int64 uint64_t;
 #else
-		typedef unsigned long int uint64_t;
+		typedef unsigned long long uint64_t;
 #endif
 #endif //__BT_SKIP_UINT64_H
 #endif //PFX_USE_FREE_VECTORMATH
