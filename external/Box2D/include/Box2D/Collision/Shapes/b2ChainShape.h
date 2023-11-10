@@ -19,7 +19,7 @@
 #ifndef B2_CHAIN_SHAPE_H
 #define B2_CHAIN_SHAPE_H
 
-#include "Box2D/Collision/Shapes/b2Shape.h"
+#include <Box2D/Collision/Shapes/b2Shape.h>
 
 class b2EdgeShape;
 
@@ -36,9 +36,6 @@ public:
 
 	/// The destructor frees the vertices using b2Free.
 	~b2ChainShape();
-
-	/// Clear all data.
-	void Clear();
 
 	/// Create a loop. This automatically adjusts connectivity.
 	/// @param vertices an array of vertices, these are copied
@@ -59,28 +56,28 @@ public:
 	void SetNextVertex(const b2Vec2& nextVertex);
 
 	/// Implement b2Shape. Vertices are cloned using b2Alloc.
-	b2Shape* Clone(b2BlockAllocator* allocator) const override;
+	b2Shape* Clone(b2BlockAllocator* allocator) const;
 
 	/// @see b2Shape::GetChildCount
-	int32 GetChildCount() const override;
+	int32 GetChildCount() const;
 
 	/// Get a child edge.
 	void GetChildEdge(b2EdgeShape* edge, int32 index) const;
 
 	/// This always return false.
 	/// @see b2Shape::TestPoint
-	bool TestPoint(const b2Transform& transform, const b2Vec2& p) const override;
+	bool TestPoint(const b2Transform& transform, const b2Vec2& p) const;
 
 	/// Implement b2Shape.
 	bool RayCast(b2RayCastOutput* output, const b2RayCastInput& input,
-					const b2Transform& transform, int32 childIndex) const override;
+					const b2Transform& transform, int32 childIndex) const;
 
 	/// @see b2Shape::ComputeAABB
-	void ComputeAABB(b2AABB* aabb, const b2Transform& transform, int32 childIndex) const override;
+	void ComputeAABB(b2AABB* aabb, const b2Transform& transform, int32 childIndex) const;
 
 	/// Chains have zero mass.
 	/// @see b2Shape::ComputeMass
-	void ComputeMass(b2MassData* massData, float32 density) const override;
+	void ComputeMass(b2MassData* massData, float32 density) const;
 
 	/// The vertices. Owned by this class.
 	b2Vec2* m_vertices;
@@ -96,7 +93,7 @@ inline b2ChainShape::b2ChainShape()
 {
 	m_type = e_chain;
 	m_radius = b2_polygonRadius;
-	m_vertices = nullptr;
+	m_vertices = NULL;
 	m_count = 0;
 	m_hasPrevVertex = false;
 	m_hasNextVertex = false;

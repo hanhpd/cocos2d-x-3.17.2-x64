@@ -19,8 +19,8 @@
 #ifndef B2_BODY_H
 #define B2_BODY_H
 
-#include "Box2D/Common/b2Math.h"
-#include "Box2D/Collision/Shapes/b2Shape.h"
+#include <Box2D/Common/b2Math.h>
+#include <Box2D/Collision/Shapes/b2Shape.h>
 #include <memory>
 
 class b2Fixture;
@@ -53,7 +53,7 @@ struct b2BodyDef
 	/// This constructor sets the body definition default values.
 	b2BodyDef()
 	{
-		userData = nullptr;
+		userData = NULL;
 		position.Set(0.0f, 0.0f);
 		angle = 0.0f;
 		linearVelocity.Set(0.0f, 0.0f);
@@ -89,13 +89,11 @@ struct b2BodyDef
 	/// Linear damping is use to reduce the linear velocity. The damping parameter
 	/// can be larger than 1.0f but the damping effect becomes sensitive to the
 	/// time step when the damping parameter is large.
-	/// Units are 1/time
 	float32 linearDamping;
 
 	/// Angular damping is use to reduce the angular velocity. The damping parameter
 	/// can be larger than 1.0f but the damping effect becomes sensitive to the
 	/// time step when the damping parameter is large.
-	/// Units are 1/time
 	float32 angularDamping;
 
 	/// Set this flag to false if this body should never fall asleep. Note that
@@ -211,6 +209,7 @@ public:
 
 	/// Apply a torque. This affects the angular velocity
 	/// without affecting the linear velocity of the center of mass.
+	/// This wakes up the body.
 	/// @param torque about the z-axis (out of the screen), usually in N-m.
 	/// @param wake also wake up the body
 	void ApplyTorque(float32 torque, bool wake);
@@ -222,11 +221,6 @@ public:
 	/// @param point the world position of the point of application.
 	/// @param wake also wake up the body
 	void ApplyLinearImpulse(const b2Vec2& impulse, const b2Vec2& point, bool wake);
-
-	/// Apply an impulse to the center of mass. This immediately modifies the velocity.
-	/// @param impulse the world impulse vector, usually in N-seconds or kg-m/s.
-	/// @param wake also wake up the body
-	void ApplyLinearImpulseToCenter(const b2Vec2& impulse, bool wake);
 
 	/// Apply an angular impulse.
 	/// @param impulse the angular impulse in units of kg*m*m/s
@@ -640,8 +634,11 @@ inline void b2Body::SetAwake(bool flag)
 {
 	if (flag)
 	{
-		m_flags |= e_awakeFlag;
-		m_sleepTime = 0.0f;
+		if ((m_flags & e_awakeFlag) == 0)
+		{
+			m_flags |= e_awakeFlag;
+			m_sleepTime = 0.0f;
+		}
 	}
 	else
 	{
@@ -812,25 +809,6 @@ inline void b2Body::ApplyLinearImpulse(const b2Vec2& impulse, const b2Vec2& poin
 	{
 		m_linearVelocity += m_invMass * impulse;
 		m_angularVelocity += m_invI * b2Cross(point - m_sweep.c, impulse);
-	}
-}
-
-inline void b2Body::ApplyLinearImpulseToCenter(const b2Vec2& impulse, bool wake)
-{
-	if (m_type != b2_dynamicBody)
-	{
-		return;
-	}
-
-	if (wake && (m_flags & e_awakeFlag) == 0)
-	{
-		SetAwake(true);
-	}
-
-	// Don't accumulate velocity if the body is sleeping
-	if (m_flags & e_awakeFlag)
-	{
-		m_linearVelocity += m_invMass * impulse;
 	}
 }
 
