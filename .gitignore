@@ -23,12 +23,11 @@ Thumbs.db
 *.ilk
 *.log
 [Bb]in
-[Dd]ebug/
 [Dd]ebug.win32/
+[Rr]esources/
 *.sbr
 *.sdf
 obj/
-[Rr]elease/
 [Rr]elease.win32/
 _ReSharper*/
 [Tt]est[Rr]esult*
@@ -184,3 +183,4 @@ temp/
 
 build-x64
 build-x86
+proj.win32/
