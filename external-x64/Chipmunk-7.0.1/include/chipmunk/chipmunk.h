@@ -28,7 +28,11 @@
 #ifdef WIN32
 	// For alloca().
 	#include <malloc.h>
-	#define CP_EXPORT __declspec(dllexport)
+    #if !defined(WINAPI_FAMILY) || (WINAPI_FAMILY == WINAPI_FAMILY_DESKTOP_APP)
+        #define CP_EXPORT __declspec(dllexport)
+    #else
+	    #define CP_EXPORT
+    #endif
 #else
 	#include <alloca.h>
 	#define CP_EXPORT
@@ -128,6 +132,7 @@ typedef struct cpSpace cpSpace;
 #include "cpConstraint.h"
 
 #include "cpSpace.h"
+#include "cpHastySpace.h"
 
 // Chipmunk 7.0.1
 #define CP_VERSION_MAJOR 7

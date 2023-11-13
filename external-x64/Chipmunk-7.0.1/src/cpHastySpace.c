@@ -6,7 +6,7 @@
 
 #include <pthread.h>
 //#include <sys/param.h >
-#include <sys/sysctl.h>
+//#include <sys/sysctl.h>
 
 #include "chipmunk/chipmunk_private.h"
 #include "chipmunk/cpHastySpace.h"
@@ -207,7 +207,7 @@ struct cpHastySpace {
 	struct ThreadContext workers[MAX_THREADS - 1];
 };
 
-static void *
+static void * 
 WorkerThreadLoop(struct ThreadContext *context)
 {
 	cpHastySpace *hasty = context->space;
@@ -333,7 +333,7 @@ cpHastySpaceSetThreads(cpSpace *space, unsigned long threads)
 			hasty->workers[i].space = hasty;
 			hasty->workers[i].thread_num = i + 1;
 			
-			pthread_create(&hasty->workers[i].thread, NULL, (void *)WorkerThreadLoop, &hasty->workers[i]);
+			pthread_create(&hasty->workers[i].thread, NULL, (void* (*)(void*))WorkerThreadLoop, &hasty->workers[i]);
 		}
 		
 		pthread_cond_wait(&hasty->cond_resume, &hasty->mutex);
