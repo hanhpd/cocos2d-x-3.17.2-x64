@@ -27,6 +27,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v141_xp</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -107,7 +108,15 @@
     </PreLinkEvent>
     <PreBuildEvent>
       <Command>xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
-xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y</Command>
+xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\gles\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\curl\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\MP3Decoder\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\OggDecoder\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\png\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\OpenalSoft\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\websockets\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Copy files</Message>
@@ -117,7 +126,7 @@ xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y</Command>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\Classes;$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include;$(EngineRoot)external\curl\include\win32;$(EngineRoot)external\websockets\win32\include;$(EngineRoot)extensions;$(EngineRoot)external\bullet\include;$(EngineRoot)external\bullet\include\bullet;$(EngineRoot)external\Box2D\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Classes;$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include;$(EngineRoot)external\curl\include\win32;$(EngineRoot)external\websockets\win32\include;$(EngineRoot)extensions;$(EngineRoot)external\bullet\include;$(EngineRoot)external\bullet\include\bullet;$(EngineRoot)external\Box2D\include\;$(EngineRoot)external\glfw3\include\win32;$(EngineRoot)external\win32-specific\gles\include\OGLES;$(EngineRoot)external\freetype2\include\win32\freetype2;$(EngineRoot)external\freetype2\include\win32;$(EngineRoot)external\openssl\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -131,9 +140,9 @@ xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y</Command>
       <ForcedIncludeFiles>precheader.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcurl.lib;libssl.lib;libcrypto.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_imp.lib;libssl.lib;libcrypto.lib;glew32.lib;zlib.lib;webp.lib;libiconv.lib;freetype.lib;libbox2d.lib;libpng16.lib;libjpeg.lib;libtiff.lib;libchipmunk.lib;glfw3.lib;libSpine.lib;BulletCollision.lib;BulletDynamics.lib;BulletMultiThreaded.lib;LinearMath.lib;MiniCL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)$(Configuration).win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)$(Configuration).win32;$(EngineRoot)external\Box2D\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\bullet\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\curl\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\freetype2\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\glfw3\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\jpeg\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\png\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\tiff\prebuilt\$(Platform);$(EngineRoot)\external\webp\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\websockets\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\icon\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\gles\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\OpenalSoft\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\MP3Decoder\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\OggDecoder\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\sqlite3\libraries\$(Platform)\$(Configuration);$(EngineRoot)\external\chipmunk\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\openssl\prebuilt\$(Platform);$(EngineRoot)\external\uv\prebuilt\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -151,7 +160,15 @@ xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y</Command>
     </PreLinkEvent>
     <PreBuildEvent>
       <Command>xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
-xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y</Command>
+xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\gles\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\curl\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\MP3Decoder\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\OggDecoder\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\png\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\OpenalSoft\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\websockets\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Copy files</Message>

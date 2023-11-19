@@ -116,6 +116,9 @@ Global
 		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE} = {92D54E36-7916-48EF-A951-224DD3B25442}
 		{41E34993-647E-4282-8384-4AB1AE31A452} = {92D54E36-7916-48EF-A951-224DD3B25442}
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A73FA5E-9D4B-44D3-B923-FD081D828864}
+	EndGlobalSection
 	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
 		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
 	EndGlobalSection
