@@ -25,28 +25,24 @@
 #include <stdlib.h>
 #include <math.h>
 
-#ifdef WIN32
-	// For alloca().
-	#include <malloc.h>
+#ifndef alloca
+	#ifdef _WIN32
+		#include <malloc.h>
+	#elif defined(__FreeBSD__)
+		/* already included in <stdlib.h> */
+	#else
+		#include <alloca.h>
+	#endif
+#endif
+
+#ifdef _WIN32
 	#define CP_EXPORT __declspec(dllexport)
 #else
-	#include <alloca.h>
 	#define CP_EXPORT
 #endif
 
 #ifdef __cplusplus
 extern "C" {
-#endif
-
-// NUKE
-#ifndef CP_ALLOW_PRIVATE_ACCESS
-	#define CP_ALLOW_PRIVATE_ACCESS 0
-#endif
-
-#if CP_ALLOW_PRIVATE_ACCESS == 1
-	#define CP_PRIVATE(__symbol__) __symbol__
-#else
-	#define CP_PRIVATE(__symbol__) __symbol__##_private
 #endif
 
 CP_EXPORT void cpMessage(const char *condition, const char *file, int line, int isError, int isHardError, const char *message, ...);
@@ -129,10 +125,10 @@ typedef struct cpSpace cpSpace;
 
 #include "cpSpace.h"
 
-// Chipmunk 7.0.1
+// Chipmunk 7.0.3
 #define CP_VERSION_MAJOR 7
 #define CP_VERSION_MINOR 0
-#define CP_VERSION_RELEASE 1
+#define CP_VERSION_RELEASE 3
 
 /// Version string.
 CP_EXPORT extern const char *cpVersionString;
@@ -173,10 +169,6 @@ CP_EXPORT cpFloat cpMomentForBox2(cpFloat m, cpBB box);
 /// @c first is an optional pointer to an integer to store where the first vertex in the hull came from (i.e. verts[first] == result[0])
 /// @c tol is the allowed amount to shrink the hull when simplifying it. A tolerance of 0.0 creates an exact hull.
 CP_EXPORT int cpConvexHull(int count, const cpVect *verts, cpVect *result, int *first, cpFloat tol);
-
-#ifdef _MSC_VER
-#include "malloc.h"
-#endif
 
 /// Convenience macro to work with cpConvexHull.
 /// @c count and @c verts is the input array passed to cpConvexHull().
