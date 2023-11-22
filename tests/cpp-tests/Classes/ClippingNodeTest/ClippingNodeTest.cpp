@@ -71,10 +71,10 @@ bool BaseClippingNodeTest::init()
 {
 	if (TestCase::init()) {
         
-        auto background = Sprite::create(s_back3);
+        /*auto background = Sprite::create(s_back3);
         background->setAnchorPoint( Vec2::ZERO );
         background->setPosition( Vec2::ZERO );
-        this->addChild(background, -1);
+        this->addChild(background, -1);*/
 
         this->setup();
         return true;
@@ -455,7 +455,7 @@ void ScrollViewDemo::setup()
     clipper->setAnchorPoint(  Vec2(0.5, 0.5) );
     clipper->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
     clipper->runAction(RepeatForever::create(RotateBy::create(1, 45)));
-    this->addChild(clipper);
+    this->addChild(clipper, -1);
 
     auto stencil = DrawNode::create();
     Vec2 rectangle[4];
@@ -472,7 +472,7 @@ void ScrollViewDemo::setup()
     content->setTag( kTagContentNode );
     content->setAnchorPoint(  Vec2(0.5, 0.5) );
     content->setPosition(clipper->getContentSize().width / 2, clipper->getContentSize().height / 2);
-    clipper->addChild(content);
+    clipper->addChild(content, -1);
     
     _scrolling = false;
 
