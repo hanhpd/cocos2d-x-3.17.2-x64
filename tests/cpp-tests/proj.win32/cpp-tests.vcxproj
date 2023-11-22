@@ -5,9 +5,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -18,6 +26,18 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v141_xp</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -40,6 +60,17 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v141_xp</PlatformToolset>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v141_xp</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -48,7 +79,17 @@
     <Import Project="..\..\..\cocos\2d\cocos2dx.props" />
     <Import Project="..\..\..\cocos\2d\cocos2d_headers.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\cocos\2d\cocos2dx.props" />
+    <Import Project="..\..\..\cocos\2d\cocos2d_headers.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\cocos\2d\cocos2dx.props" />
+    <Import Project="..\..\..\cocos\2d\cocos2d_headers.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\cocos\2d\cocos2dx.props" />
     <Import Project="..\..\..\cocos\2d\cocos2d_headers.props" />
@@ -59,20 +100,34 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration).win32\cpp-tests\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration).win32\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration).win32\cpp-tests\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration).win32\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -96,6 +151,52 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>libcurl_imp.lib;libssl.lib;libcrypto.lib;glew32d.lib;zlibd.lib;webp.lib;libiconv.lib;freetype.lib;libbox2d.lib;libpng16.lib;libjpeg.lib;libtiff.lib;libchipmunk.lib;glfw3.lib;libSpine.lib;BulletCollision.lib;BulletDynamics.lib;BulletMultiThreaded.lib;LinearMath.lib;MiniCL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
+xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\gles\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\curl\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\MP3Decoder\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\OggDecoder\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\png\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\OpenalSoft\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\websockets\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Copy files</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Classes;$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include;$(EngineRoot)external\curl\include\win32;$(EngineRoot)external\websockets\include\x64;$(EngineRoot)extensions;$(EngineRoot)external\bullet\include;$(EngineRoot)external\bullet\include\bullet;$(EngineRoot)external\Box2D\include\;$(EngineRoot)external\glfw3\include\win32;$(EngineRoot)external\win32-specific\gles\include\OGLES;$(EngineRoot)external\freetype2\include\win32\freetype2;$(EngineRoot)external\freetype2\include\win32;$(EngineRoot)external\openssl\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;COCOS2DXWIN32_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PrecompiledHeaderFile>precheader.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>precheader.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)$(Configuration).win32;$(EngineRoot)external\Box2D\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\bullet\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\curl\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\freetype2\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\glfw3\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\jpeg\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\png\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\tiff\prebuilt\$(Platform);$(EngineRoot)\external\webp\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\websockets\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\icon\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\gles\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\OpenalSoft\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\MP3Decoder\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\OggDecoder\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\sqlite3\libraries\$(Platform)\$(Configuration);$(EngineRoot)\external\chipmunk\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\openssl\prebuilt\$(Platform);$(EngineRoot)\external\uv\prebuilt\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>libcurl_imp.lib;libssl.lib;libcrypto.lib;glew32d.lib;zlibd.lib;webp.lib;libiconv.lib;freetype.lib;libbox2d.lib;libpng16.lib;libjpeg.lib;libtiff.lib;libchipmunk.lib;glfw3.lib;libSpine.lib;BulletCollision.lib;BulletDynamics.lib;BulletMultiThreaded.lib;LinearMath.lib;MiniCL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -174,6 +275,58 @@ xcopy "$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configu
       <Message>Copy files</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\Classes;$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include;$(EngineRoot)external\curl\include\win32;$(EngineRoot)external\websockets\win32\include;$(EngineRoot)extensions;$(EngineRoot)external\bullet\include;$(EngineRoot)external\bullet\include\bullet;$(EngineRoot)external\Box2D\include\;$(EngineRoot)external\glfw3\include\win32;$(EngineRoot)external\win32-specific\gles\include\OGLES;$(EngineRoot)external\freetype2\include\win32\freetype2;$(EngineRoot)external\freetype2\include\win32;$(EngineRoot)external\openssl\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>precheader.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>precheader.h</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libcurl_imp.lib;libssl.lib;libcrypto.lib;glew32.lib;zlib.lib;webp.lib;libiconv.lib;freetype.lib;libbox2d.lib;libpng16.lib;libjpeg.lib;libtiff.lib;libchipmunk.lib;glfw3.lib;libSpine.lib;BulletCollision.lib;BulletDynamics.lib;BulletMultiThreaded.lib;LinearMath.lib;MiniCL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)$(Configuration).win32;$(EngineRoot)external\Box2D\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\bullet\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\curl\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\freetype2\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\glfw3\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\jpeg\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\png\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\tiff\prebuilt\$(Platform);$(EngineRoot)\external\webp\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\websockets\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\icon\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\gles\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\OpenalSoft\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\MP3Decoder\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\win32-specific\OggDecoder\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\sqlite3\libraries\$(Platform)\$(Configuration);$(EngineRoot)\external\chipmunk\prebuilt\$(Platform)\$(Configuration);$(EngineRoot)\external\openssl\prebuilt\$(Platform);$(EngineRoot)\external\uv\prebuilt\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
+xcopy "$(OutDir)..\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\gles\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\curl\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\MP3Decoder\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\OggDecoder\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\png\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\OpenalSoft\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\websockets\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y
+xcopy "$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configuration)\*.dll" "$(OutDir)" /D /Y</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Copy files</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AllocatorTest\AllocatorTest.cpp" />
     <ClCompile Include="..\Classes\BaseTest.cpp" />
@@ -212,8 +365,11 @@ xcopy "$(EngineRoot)\external\win32-specific\zlib\prebuilt\$(Platform)\$(Configu
     <ClCompile Include="..\Classes\PhysicsTest\PhysicsTest.cpp" />
     <ClCompile Include="..\Classes\precheader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precheader.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">precheader.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Classes\ReleasePoolTest\ReleasePoolTest.cpp" />
     <ClCompile Include="..\Classes\Scene3DTest\Scene3DTest.cpp" />
