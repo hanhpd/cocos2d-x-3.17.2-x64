@@ -1,3 +1,9 @@
+Note: 
+Open cocos2d-win32.sln (using platform toolset - visual studio 2022 (v143) ) and run cpp-test project (Release x64) for test.
+You can build external lib for other platform toolset in externalx64 folder.
+I will make guide later.
+
+
 <img src="http://www.cocos2d-x.org/attachments/801/cocos2dx_portrait.png" width=200>
 
 
